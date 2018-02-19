@@ -27,7 +27,7 @@ services:
     image: tomx/nginx
     ports:
       - "80:80"
-     volumes:    
+    volumes:    
       - nginx_www:/usr/share/nginx/www
 
 volumes:
