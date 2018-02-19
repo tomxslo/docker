@@ -17,12 +17,9 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
   pgadmin:
-    links:
-      - postgres:postgres
     image: fenglc/pgadmin4
     ports:
       - "5050:5050"
-    restart: unless-stopped
     volumes:    
       - admin_data:/var/lib/pgadmin
 
@@ -30,8 +27,7 @@ services:
     image: tomx/nginx
     ports:
       - "80:80"
-    restart: unless-stopped
-    volumes:    
+     volumes:    
       - nginx_www:/usr/share/nginx/www
 
 volumes:
