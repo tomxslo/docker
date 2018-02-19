@@ -1,0 +1,47 @@
+# create your drupal and postgres config here, based off the last assignment with secrets + stack
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/POSTGRES_PASSWORD
+      POSTGRES_DB_FILE: /run/secrets/POSTGRES_DB
+      POSTGRES_USER_FILE: /run/secrets/POSTGRES_USER
+    secrets:
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_USER
+    ports: 
+     - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  pgadmin:
+    links:
+      - postgres:postgres
+    image: fenglc/pgadmin4
+    ports:
+      - "5050:5050"
+    restart: unless-stopped
+    volumes:    
+      - admin_data:/var/lib/pgadmin
+
+  nginx:
+    image: tomx/nginx
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    volumes:    
+      - nginx_www:/usr/share/nginx/www
+
+volumes:
+  db_data:
+  admin_data:
+  nginx_www:
+secrets:
+  POSTGRES_PASSWORD:
+    external: true
+  POSTGRES_DB:
+    external: true
+  POSTGRES_USER:
+    external: true
