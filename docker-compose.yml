@@ -24,7 +24,7 @@ services:
       - admin_data:/var/lib/pgadmin
 
   nginx:
-    image: tomx/nginx
+    image: 192.168.6.58:8083/nginx:1
     ports:
       - "80:80"
     volumes:    
