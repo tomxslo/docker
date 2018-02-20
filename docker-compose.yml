@@ -35,6 +35,7 @@ volumes:
   db_data:
   admin_data:
   nginx_www:
+  nginx_html:
 secrets:
   POSTGRES_PASSWORD:
     external: true
