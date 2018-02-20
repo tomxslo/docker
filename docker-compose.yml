@@ -29,6 +29,7 @@ services:
       - "80:80"
     volumes:    
       - nginx_www:/usr/share/nginx/www
+      - nginx_html:/usr/share/nginx/html
 
 volumes:
   db_data:
