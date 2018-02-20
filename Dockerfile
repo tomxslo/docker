@@ -45,6 +45,8 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
 # forward request and error logs to docker log collector
 
+COPY default.conf /etc/nginx/conf.d
+
 EXPOSE 80 443
 # expose these ports on the docker virtual network
 # you still need to use -p or -P to open/forward these ports on host
